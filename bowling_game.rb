@@ -23,16 +23,21 @@ class BowlingGame
 		while current_roll < @rolls.size
 			roll 			= @rolls[current_roll]
 			next_roll	= @rolls[current_roll + 1]
+			
+			# If you throw a strike!
+			if roll == 10
+				total_score += 10 + next_roll + @rolls[current_roll + 2]
+				current_roll += 1
 			# If you get a spare
-			if roll + next_roll == 10
+			elsif roll + next_roll == 10
 				total_score += 10 + @rolls[current_roll + 2]
+				current_roll += 2
 			else 
 				total_score += roll + next_roll
+				current_roll += 2
 			end
-
-			current_roll += 2
 		end
 		return total_score
 	end	
-	
+
 end
